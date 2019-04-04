@@ -8,7 +8,7 @@ namespace RandonNumberThingy
         static void Main(string[] args)
         { 
             Stopwatch stwtch = new Stopwatch();
-            stwtch.Start();
+            stwtch.Start(); 
              int temp=0;
              Randomizer r = new Randomizer(); 
              Item_Manager item = new Item_Manager();

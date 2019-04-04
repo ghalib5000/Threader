@@ -1,7 +1,7 @@
 namespace RandonNumberThingy
 {
     public class Item_Manager
-    {
+    { 
         private  int _Item_Count=0;
         public int Item_Count
         {

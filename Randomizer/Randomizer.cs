@@ -1,6 +1,6 @@
 using System;
 namespace RandonNumberThingy 
-{    public class Randomizer
+{    public class Randomizer 
     { 
         Random r = new Random();
         public int create_Randomizer(int i)
