@@ -16,6 +16,6 @@ namespace RandonNumberThingy
                  num=num-(num*2);
             }
             return num;
-         
+        }  
     }
 }

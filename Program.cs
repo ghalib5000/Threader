@@ -6,7 +6,7 @@ namespace RandonNumberThingy
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
             Stopwatch stwtch = new Stopwatch();
             stwtch.Start();
              int temp=0;
