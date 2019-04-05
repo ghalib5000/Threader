@@ -5,41 +5,63 @@ namespace RandonNumberThingy
 {
     class Program
     {
-     static   Item_Manager item = new Item_Manager();
+        static Stopwatch stwtch = new Stopwatch();
+        static Randomizer r = new Randomizer();
+        static public  Item_Manager item = new Item_Manager();
+        static int loops= r.create_Randomizer(500,1000);
+        static int cc=0;
+        static int thrcnt=0;
+    private static Mutex mutty = new Mutex();
         static void Main(string[] args)
         { 
-           
-            Randomizer r = new Randomizer(); 
-            int loops= r.create_Randomizer(500000,1000000);
-            Stopwatch stwtch = new Stopwatch();
+            
             stwtch.Start(); 
-  
+            lock (r){
 
-            for(int i=0;i<500;i++)
-            {//NUMBER OF THREADS MADE
-                Thread t = new Thread(work);    
-                t.Start();
-                t.Join();
-                int y= t.ManagedThreadId;
-                Console.WriteLine("the current thread number is {0}",y);
+            Thread[] ThreadSwimmingPool = new Thread[loops];
+            for(int i=0;i<loops;i++)
+            {
+                ThreadSwimmingPool[i] = new Thread(func);
+                ThreadSwimmingPool[i].Name = Convert.ToString(i);
+             //   Console.WriteLine("thread number {0} is created",ThreadSwimmingPool[i].ManagedThreadId);
+                ThreadSwimmingPool[i].Start();
+              //  Console.WriteLine("thread number {0} is started",ThreadSwimmingPool[i].ManagedThreadId);
             }
-          
-             
         stwtch.Stop();
-        TimeSpan time = stwtch.Elapsed;
-        Console.WriteLine("the final item count is: "+Program.item.Item_Count);
-        Console.WriteLine("it took {0} hours {1} minutes {2} seconds {3} millisecondsto complete the task",time.Hours,time.Minutes,time.Seconds,time.Milliseconds);
+            }
         }
         static void work()
         {
-        Randomizer r = new Randomizer();
-        int temp=0;        
-        
+            thrcnt++;
+            cc++;
+        int temp=0;  
+        Console.WriteLine("the current thread number is {0}",Thread.CurrentThread.Name);
         Add_or_Subtract aos = new Add_or_Subtract();     
         Thread.Sleep(50);
         temp = aos.Get_Number(r.create_Randomizer(0,9));
       item.Item_Count = item.Item_Count+temp;
         item.Item_Checker();
+        if(cc==loops)
+        {
+        //displays the result
+        Threads.result(stwtch,thrcnt);
+        }        
         }
+    static void func()
+    {
+
+      //  Console.WriteLine("thread number {0} is requesting access to THE AREA!!!",Thread.CurrentThread.Name);
+       mutty.WaitOne();
+     //  Console.WriteLine("thread number {0} has entered THE AREA!!!",Thread.CurrentThread.Name);
+//THE AREA!!!
+
+        work();
+
+//THE AREA!!!
+Thread.Sleep(r.create_Randomizer(500,1000));
+    //     Console.WriteLine("{0} is leaving THE AREA!!!",Thread.CurrentThread.Name);
+         mutty.ReleaseMutex();
+      //  Console.WriteLine("{0} has Exited THE AREA!!!",Thread.CurrentThread.Name);
+    }
     }
 }
