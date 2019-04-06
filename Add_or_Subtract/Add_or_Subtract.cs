@@ -14,6 +14,7 @@ namespace RandonNumberThingy
             System.Console.WriteLine("Added {0}",num);
             item.Item_Count = item.Item_Count+num;
             }
+            
             else
             {//SUBTRACT
             num=  r.create_Randomizer(1,6);
@@ -28,6 +29,7 @@ namespace RandonNumberThingy
             {
             item.Item_Count = item.Item_Count+num;
             System.Console.WriteLine("Subtracted {0}",num);
+               
             }
             item.Item_Checker();
             }

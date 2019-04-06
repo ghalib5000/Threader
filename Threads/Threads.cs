@@ -33,7 +33,7 @@ namespace RandonNumberThingy
     {
     
       //  Console.WriteLine("thread number {0} is requesting access to THE AREA!!!",Thread.CurrentThread.Name);
-            mutty.WaitOne();
+     //       mutty.WaitOne();
       // Console.WriteLine("thread number {0} has entered THE AREA!!!",Thread.CurrentThread.Name);
 //THE AREA!!!
 
@@ -43,7 +43,7 @@ namespace RandonNumberThingy
 Thread.Sleep(r.create_Randomizer(500,1000));
     //     Console.WriteLine("{0} is leaving THE AREA!!!",Thread.CurrentThread.Name);
 
-          mutty.ReleaseMutex();
+       //   mutty.ReleaseMutex();
       //  Console.WriteLine("{0} has Exited THE AREA!!!",Thread.CurrentThread.Name);
     }
     

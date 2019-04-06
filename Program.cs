@@ -7,24 +7,21 @@ namespace RandonNumberThingy
     {
         static Stopwatch stwtch = new Stopwatch();
         static Randomizer r = new Randomizer();
-                static int loops= r.create_Randomizer(5000,10000);
+                static int loops=r.create_Randomizer(50000,1000000);
         static int cc=0;
         static int thrcnt=0;
-
-
         static void Main(string[] args)
         { 
             
             stwtch.Start(); 
-            lock (r){
         Threads.CreateThread(loops);
-            }
+            
         }
         public static void work()
         {
+          lock(r){
             thrcnt++;
             cc++;
-        int temp=0;  
         Console.WriteLine("the current thread number is {0}",Thread.CurrentThread.Name);
         Add_or_Subtract aos = new Add_or_Subtract();     
         Thread.Sleep(50);
@@ -37,6 +34,6 @@ namespace RandonNumberThingy
         Threads.result(stwtch,thrcnt);
         }        
         }
-    
+        }
     }
 }
