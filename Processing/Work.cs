@@ -10,8 +10,9 @@ namespace RandonNumberThingy
         {
           lock(locker)
         {
+          Program looper = new Program();
             Random rand = new Random();
-            int loop= Program.getLoopCount;
+            int loop= looper.getLoopCount;
             thrcnt++;
             //TimeSpan time = Threads.stwtch.Elapsed;
         Console.WriteLine("the current thread number is {0}",Thread.CurrentThread.Name);

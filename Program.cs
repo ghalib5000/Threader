@@ -4,16 +4,20 @@ namespace RandonNumberThingy
 {
     class Program
     {
-      static Random rand = new Random();
-        static int loops= rand.Next(500,1000);
+      // static Random rand = new Random();
+     //   static int loops= rand.Next(500,1000);
+        private static int loops=0;
         
         static void Main(string[] args)
         { 
-        Threads trcreater = new Threads();
+            Random rand = new Random();
+         loops= rand.Next(500,1000);
+        Threads trcreater = new Threads();  
         trcreater.CreateThread(loops);
         }
 
-            public  int getLoopCount
+
+            public int getLoopCount
       {
           get{
                 return loops;

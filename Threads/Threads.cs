@@ -29,7 +29,7 @@ namespace RandonNumberThingy
             }
         
         }
-        static void Startwork()
+         void Startwork()
         {
         Random rand = new Random();
         lock(rand){
