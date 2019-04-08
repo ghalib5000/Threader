@@ -13,7 +13,7 @@ namespace RandonNumberThingy
         trcreater.CreateThread(loops);
         }
 
-            public static int getLoopCount
+            public  int getLoopCount
       {
           get{
                 return loops;
