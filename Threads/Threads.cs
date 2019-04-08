@@ -5,10 +5,8 @@ namespace RandonNumberThingy
 {
     public class Threads
     {
-        static Randomizer r = new Randomizer();
-         
-       
-        public static void result(Stopwatch stwtch ,int tcount)
+        
+        public static Stopwatch stwtch = new Stopwatch();        public static void result(Stopwatch stwtch ,int tcount)
          {
               TimeSpan time = stwtch.Elapsed;   
         Console.WriteLine("the final item count is: "+Add_or_Subtract.item.Item_Count);
@@ -16,8 +14,10 @@ namespace RandonNumberThingy
         Console.WriteLine("total thread count is: "+tcount);
        
         }
-        public static void CreateThread(int nums)
+        public void CreateThread(int nums)
         {   
+                
+        stwtch.Start(); 
         Thread[] ThreadSwimmingPool = new Thread[nums];
             for(int i=0;i<nums;i++)
             {
@@ -30,22 +30,13 @@ namespace RandonNumberThingy
         
         }
         static void Startwork()
-    {
-    Mutex mutty = new Mutex();
-      //  Console.WriteLine("thread number {0} is requesting access to THE AREA!!!",Thread.CurrentThread.Name);
-            mutty.WaitOne();
-      // Console.WriteLine("thread number {0} has entered THE AREA!!!",Thread.CurrentThread.Name);
-//THE AREA!!!
-
-       Program.work();
-
-//THE AREA!!!
-Thread.Sleep(r.create_Randomizer(500,1000));
-    //     Console.WriteLine("{0} is leaving THE AREA!!!",Thread.CurrentThread.Name);
-
-       //   mutty.ReleaseMutex();
-      //  Console.WriteLine("{0} has Exited THE AREA!!!",Thread.CurrentThread.Name);
-    }
-    
+        {
+        Random rand = new Random();
+        lock(rand){
+            Work.work();
+            Thread.Sleep(rand.Next(500,1000));
+        }
+        }  
     }
 }
+

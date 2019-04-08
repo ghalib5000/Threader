@@ -5,7 +5,7 @@ namespace RandonNumberThingy
     public class Item_Manager
     { 
         private  int _Item_Count=0;
-        private static int cc=0;
+     //   private static int countchecker=0;
         private object locker = new object();
          public int Item_Count
         {
@@ -16,7 +16,7 @@ namespace RandonNumberThingy
                 lock(locker)
                {
                 this._Item_Count= value;
-                cc=_Item_Count;
+              //  countchecker=_Item_Count;
                 }
             }
         }
@@ -26,11 +26,6 @@ namespace RandonNumberThingy
             {
                 _Item_Count=0;
             }
-            
-        }
-        public void add(int i)
-        {
-
         }
     }
 }

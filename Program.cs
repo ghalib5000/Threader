@@ -1,39 +1,26 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 namespace RandonNumberThingy
 {
     class Program
     {
-        static Stopwatch stwtch = new Stopwatch();
-        static Randomizer r = new Randomizer();
-                static int loops=r.create_Randomizer(500,1000);
-        static int cc=0;
-        static int thrcnt=0;
+      static Random rand = new Random();
+        static int loops= rand.Next(500,1000);
+        
         static void Main(string[] args)
         { 
-            
-            stwtch.Start(); 
-        Threads.CreateThread(loops);
-            
+        Threads trcreater = new Threads();
+        trcreater.CreateThread(loops);
         }
-        public static void work()
-        {
-          lock(r){
-            thrcnt++;
-            cc++;
-        Console.WriteLine("the current thread number is {0}",Thread.CurrentThread.Name);
-        Add_or_Subtract aos = new Add_or_Subtract();     
-        Thread.Sleep(50);
-        aos.Get_Number(r.create_Randomizer(0,9));
 
-        if(cc==loops)
-        {
-        //displays the result
-        stwtch.Stop();
-        Threads.result(stwtch,thrcnt);
-        }        
-        }
-        }
+            public static int getLoopCount
+      {
+          get{
+                return loops;
+          }
+          set
+          {
+          }
+      }
     }
 }

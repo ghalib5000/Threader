@@ -4,48 +4,29 @@ namespace RandonNumberThingy
 {
     public class Work
     {
-       static Random rand = new Random();
-       // static Mutex mutty = new Mutex();
-        static int thrcnt=0;
-     public static void startwork()
-    {
-      //  Console.WriteLine("thread number {0} is requesting access to THE AREA!!!",Thread.CurrentThread.Name);
-     //       mutty.WaitOne();
-      // Console.WriteLine("thread number {0} has entered THE AREA!!!",Thread.CurrentThread.Name);
-//THE AREA!!!
-          Work wk = new Work();
-          lock(wk){
-        //  wk.work();
-          }
-//THE AREA!!!
-Thread.Sleep(rand.Next(500,1000));
-    //     Console.WriteLine("{0} is leaving THE AREA!!!",Thread.CurrentThread.Name);
-
-       //   mutty.ReleaseMutex();
-      //  Console.WriteLine("{0} has Exited THE AREA!!!",Thread.CurrentThread.Name);
-    }
-    }
-/*    public void work()
+       static object locker = new object();
+       static int thrcnt=0;
+         public static void work()
         {
-           // Monitor.Enter(thrcnt);
+          lock(locker)
+        {
             Random rand = new Random();
-            NewMethod();
-             
-            //Add_or_Subtract aos = new Add_or_Subtract();     
-            Thread.Sleep(50);
-            Add_or_Subtract.Operate_On_ItemCount(rand.Next(0, 9));
-            if (thrcnt == Program.loops)
-            {
-                //displays the result
-                Program.stwtch.Stop();
-                Threads.result(Program.stwtch, thrcnt);
-             //   Monitor.Exit(thrcnt);
-            }
-        }
-
-        private static void NewMethod()
-        {
+            int loop= Program.getLoopCount;
             thrcnt++;
+            //TimeSpan time = Threads.stwtch.Elapsed;
+        Console.WriteLine("the current thread number is {0}",Thread.CurrentThread.Name);
+      //  Console.WriteLine("the current time is {0} seconds {1} milliseconds to complete the task",time.Seconds,time.Milliseconds);
+        
+        Add_or_Subtract aos = new Add_or_Subtract();
+        aos.Operate(rand.Next(0,9));     
+        Thread.Sleep(50);
+        if(thrcnt==loop)
+        {
+        //displays the result
+        Threads.stwtch.Stop();
+        Threads.result(Threads.stwtch,thrcnt);
+        }        
         }
-    }    */
+        }
+}
 }
