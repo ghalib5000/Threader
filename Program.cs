@@ -7,7 +7,7 @@ namespace RandonNumberThingy
     {
         static Stopwatch stwtch = new Stopwatch();
         static Randomizer r = new Randomizer();
-                static int loops=r.create_Randomizer(50000,1000000);
+                static int loops=r.create_Randomizer(500,1000);
         static int cc=0;
         static int thrcnt=0;
         static void Main(string[] args)

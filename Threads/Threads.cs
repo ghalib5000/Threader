@@ -6,7 +6,7 @@ namespace RandonNumberThingy
     public class Threads
     {
         static Randomizer r = new Randomizer();
-        static Mutex mutty = new Mutex();
+         
        
         public static void result(Stopwatch stwtch ,int tcount)
          {
@@ -21,7 +21,7 @@ namespace RandonNumberThingy
         Thread[] ThreadSwimmingPool = new Thread[nums];
             for(int i=0;i<nums;i++)
             {
-                ThreadSwimmingPool[i] = new Thread(func);
+                ThreadSwimmingPool[i] = new Thread(Startwork);
                 ThreadSwimmingPool[i].Name = Convert.ToString(i+1);
                // Console.WriteLine("thread number {0} is created",ThreadSwimmingPool[i].ManagedThreadId);
                 ThreadSwimmingPool[i].Start();
@@ -29,11 +29,11 @@ namespace RandonNumberThingy
             }
         
         }
-        static void func()
+        static void Startwork()
     {
-    
+    Mutex mutty = new Mutex();
       //  Console.WriteLine("thread number {0} is requesting access to THE AREA!!!",Thread.CurrentThread.Name);
-     //       mutty.WaitOne();
+            mutty.WaitOne();
       // Console.WriteLine("thread number {0} has entered THE AREA!!!",Thread.CurrentThread.Name);
 //THE AREA!!!
 
