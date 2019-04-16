@@ -4,27 +4,18 @@ namespace RandonNumberThingy
 {
     class Program
     {
-      // static Random rand = new Random();
-     //   static int loops= rand.Next(500,1000);
-        private static int loops=0;
-        
+        private const string App_ID = "KenHaise.MutexDemo";
         static void Main(string[] args)
-        { 
-            Random rand = new Random();
-         loops= rand.Next(500,1000);
-        Threads trcreater = new Threads();  
-        trcreater.CreateThread(loops);
+        {
+            var mutex = new Mutex(true, App_ID);
+            if (mutex.WaitOne(0, false))
+            {
+                new Worker().Work();
+            }
+            else
+            {
+                throw new Exception("Host is already running");
+            }
         }
-
-
-            public int getLoopCount
-      {
-          get{
-                return loops;
-          }
-          set
-          {
-          }
-      }
     }
 }
